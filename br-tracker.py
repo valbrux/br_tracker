@@ -27,10 +27,10 @@ def printProgressBar(total,current,prefix = '',suffix = '',decimals = 1,length =
 
 def showBooks(c):
    for row in c.execute('''SELECT * FROM books ORDER BY book_name ASC'''):
-       print "="* len(row[1])
-       print "%s" % row[1]
-       print "="* len(row[1])
-       print "Start date:%s" % row[0]
+       print("="* len(row[1]))
+       print("%s" % row[1])
+       print("="* len(row[1]))
+       print("Start date:%s" % row[0])
        printProgressBar(row[2],row[3])
        print
 
@@ -56,5 +56,5 @@ if __name__ == '__main__':
     try:
         conn.commit()
     except sqlite3.Error as er:
-        print 'error',er.message
+        print('error',er.message)
     conn.close()
