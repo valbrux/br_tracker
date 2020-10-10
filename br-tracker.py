@@ -23,16 +23,15 @@ def printProgressBar(total,current,prefix = '',suffix = '',decimals = 1,length =
     percent = ("{0:." + str(decimals) + "f}").format(100 * (current/float(total)))
     filledLength = int(length*current//total)
     bar = fill * filledLength + '-' * (length-filledLength)
-    print('|%s| %s%% %s %s/%s pages\r' % (bar,percent,suffix,current,total))
+    print('  |%s| %s%% %s %s/%s pages\r' % (bar,percent,suffix,current,total), end='')
 
 def showBooks(c):
    for row in c.execute('''SELECT * FROM books ORDER BY book_name ASC'''):
-       print("="* len(row[1]))
-       print("%s" % row[1])
-       print("="* len(row[1]))
-       print("Start date:%s" % row[0])
+       print("\033[1m%s\033[0m" % row[1])
+       print("  Start date:%s " % row[0])
        printProgressBar(row[2],row[3])
-       print
+       print("")
+       print("")
 
 if __name__ == '__main__':
     conn = sqlite3.connect(db_file)
