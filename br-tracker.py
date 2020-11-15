@@ -2,8 +2,9 @@ import sqlite3
 import argparse
 import os.path
 import datetime
+import readline
 
-db_file = ".br-tracker.db"
+db_file = "data/.br-tracker.db"
 
 
 def initDb(c):
@@ -32,6 +33,13 @@ def showBooks(c):
        printProgressBar(row[2],row[3])
        print("")
        print("")
+
+def completer(text, state):
+    options = [i for i in commands if i.startswith(text)]
+    if state < len(options):
+        return options[state]
+    else:
+        return None
 
 if __name__ == '__main__':
     conn = sqlite3.connect(db_file)
